@@ -1,0 +1,416 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>แผนอ่านหนังสือสอบครูผู้ช่วย เอกคณิตศาสตร์</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Kanit:wght@500;600;700;800&family=Sarabun:wght@400;500;600;700&family=JetBrains+Mono:wght@500;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --chalkboard:#16302B;
+    --chalkboard-2:#1C3D36;
+    --chalk:#F4F1E6;
+    --paper:#FBF8F1;
+    --paper-2:#F1ECDF;
+    --ink:#232720;
+    --ink-soft:#5B6259;
+    --marker:#2456A6;
+    --marker-light:#DCE7F8;
+    --pen:#B23A32;
+    --pen-light:#F4DEDB;
+    --rule:#D8D2C1;
+  }
+  *{box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{
+    margin:0;
+    background:var(--paper);
+    color:var(--ink);
+    font-family:'Sarabun',sans-serif;
+    -webkit-font-smoothing:antialiased;
+  }
+  h1,h2,h3,.display{
+    font-family:'Kanit',sans-serif;
+  }
+  .mono{font-family:'JetBrains Mono',monospace;}
+
+  /* ---------- HERO ---------- */
+  .hero{
+    position:relative;
+    background:
+      radial-gradient(ellipse at 20% -10%, rgba(255,255,255,0.05), transparent 45%),
+      linear-gradient(180deg, var(--chalkboard) 0%, var(--chalkboard-2) 100%);
+    color:var(--chalk);
+    padding:72px 24px 64px;
+    overflow:hidden;
+    border-bottom:10px solid var(--paper-2);
+  }
+  .hero::before{
+    content:"";
+    position:absolute; inset:0;
+    background-image:
+      repeating-linear-gradient(0deg, rgba(255,255,255,0.025) 0px, rgba(255,255,255,0.025) 1px, transparent 1px, transparent 42px),
+      repeating-linear-gradient(90deg, rgba(255,255,255,0.025) 0px, rgba(255,255,255,0.025) 1px, transparent 1px, transparent 42px);
+    pointer-events:none;
+  }
+  .hero-inner{position:relative; max-width:920px; margin:0 auto;}
+  .eyebrow{
+    display:inline-flex; align-items:center; gap:8px;
+    font-family:'JetBrains Mono',monospace;
+    font-size:13px; letter-spacing:.08em;
+    color:#B7D1F5;
+    border:1px solid rgba(183,209,245,0.35);
+    padding:6px 14px; border-radius:999px;
+    margin-bottom:22px;
+  }
+  .eyebrow .dot{width:6px;height:6px;border-radius:50%;background:#8FC77E;}
+  .hero h1{
+    font-size:clamp(30px,5vw,50px);
+    font-weight:800;
+    line-height:1.18;
+    margin:0 0 14px;
+  }
+  .hero h1 span{color:#8FC1F5;}
+  .hero p.sub{
+    font-size:17px; color:#CFD8CE; max-width:560px; line-height:1.7;
+    margin:0 0 34px;
+  }
+  .hero-stats{display:flex; gap:14px; flex-wrap:wrap;}
+  .stat-chip{
+    background:rgba(255,255,255,0.06);
+    border:1px solid rgba(255,255,255,0.14);
+    border-radius:14px;
+    padding:14px 18px;
+    min-width:120px;
+  }
+  .stat-chip .num{font-family:'JetBrains Mono',monospace; font-size:26px; font-weight:700; color:var(--chalk);}
+  .stat-chip .lbl{font-size:12.5px; color:#AEB8AC; margin-top:2px;}
+
+  /* hand-drawn circle svg */
+  .circle-wrap{position:relative; display:inline-block;}
+  .circle-wrap svg{position:absolute; top:-14px; left:-18px; width:calc(100% + 36px); height:calc(100% + 28px); overflow:visible;}
+  .circle-wrap path{
+    fill:none; stroke:#8FC1F5; stroke-width:3; stroke-linecap:round;
+    stroke-dasharray:400; stroke-dashoffset:400;
+    animation:draw 1.4s ease forwards .6s;
+  }
+  @keyframes draw{to{stroke-dashoffset:0;}}
+
+  /* ---------- SECTIONS ---------- */
+  section{max-width:980px; margin:0 auto; padding:64px 24px;}
+  .section-head{margin-bottom:36px;}
+  .section-head .tag{
+    font-family:'JetBrains Mono',monospace; font-size:12.5px; letter-spacing:.08em;
+    color:var(--marker); text-transform:uppercase; margin-bottom:8px; display:block;
+  }
+  .section-head h2{font-size:clamp(22px,3vw,32px); font-weight:700; margin:0 0 8px;}
+  .section-head p{color:var(--ink-soft); margin:0; max-width:600px; line-height:1.7;}
+
+  /* score cards */
+  .score-grid{display:grid; grid-template-columns:repeat(3,1fr); gap:18px;}
+  @media(max-width:760px){.score-grid{grid-template-columns:1fr;}}
+  .score-card{
+    background:var(--chalk);
+    border:1px solid var(--rule);
+    border-radius:16px;
+    padding:24px 22px;
+    position:relative;
+  }
+  .score-card .part{font-family:'Kanit',sans-serif; font-weight:700; font-size:19px; margin-bottom:2px;}
+  .score-card .part-name{font-size:13.5px; color:var(--ink-soft); margin-bottom:16px;}
+  .score-card ul{list-style:none; margin:0 0 18px; padding:0;}
+  .score-card li{
+    display:flex; justify-content:space-between; gap:10px;
+    font-size:14px; padding:8px 0; border-bottom:1px dashed var(--rule);
+  }
+  .score-card li:last-child{border-bottom:none;}
+  .score-card li .n{font-family:'JetBrains Mono',monospace; color:var(--ink-soft); font-size:13px; white-space:nowrap;}
+  .pass-line{
+    display:inline-flex; align-items:baseline; gap:6px;
+    font-family:'JetBrains Mono',monospace;
+    font-size:14px; color:var(--ink);
+    background:var(--marker-light); padding:8px 14px; border-radius:10px;
+  }
+  .pass-line b{font-size:18px; color:var(--marker);}
+
+  /* links inside score cards */
+  .card-link{
+    display:inline-flex; align-items:center; gap:7px;
+    margin-top:16px;
+    background:var(--marker); color:var(--chalk);
+    font-family:'Kanit',sans-serif; font-weight:600; font-size:13.5px;
+    padding:10px 16px; border-radius:10px;
+    text-decoration:none;
+    transition:background .15s, transform .15s;
+  }
+  .card-link::after{content:"→"; transition:transform .15s;}
+  .card-link:hover{background:#1B4483;}
+  .card-link:hover::after{transform:translateX(3px);}
+
+  .card-note{
+    display:block; margin-top:16px;
+    font-family:'Sarabun',sans-serif; font-style:italic; font-size:13px; line-height:1.65;
+    color:var(--pen); text-decoration:none;
+    border-top:1px dashed var(--rule); padding-top:14px;
+  }
+  .card-note::before{content:"✎ "; font-style:normal;}
+  .card-note:hover{text-decoration:underline;}
+
+  /* 10 week roadmap */
+  .roadmap{display:flex; flex-direction:column; gap:0;}
+  .week-row{
+    display:grid; grid-template-columns:64px 1fr; gap:18px;
+    padding:18px 0; border-bottom:1px solid var(--rule);
+  }
+  .week-row:last-child{border-bottom:none;}
+  .week-badge{
+    width:48px; height:48px; border-radius:50%;
+    background:var(--chalkboard); color:var(--chalk);
+    display:flex; align-items:center; justify-content:center;
+    font-family:'JetBrains Mono',monospace; font-weight:700; font-size:14px;
+  }
+  .week-title{font-family:'Kanit',sans-serif; font-weight:600; font-size:16.5px; margin:2px 0 4px;}
+  .week-detail{font-size:14px; color:var(--ink-soft); line-height:1.6;}
+
+  /* daily tabs */
+  .tabbar{
+    display:flex; gap:6px; overflow-x:auto; padding-bottom:6px; margin-bottom:22px;
+    scrollbar-width:thin;
+  }
+  .tab{
+    font-family:'Kanit',sans-serif; font-weight:600; font-size:14.5px;
+    background:var(--paper-2); color:var(--ink-soft);
+    border:none; padding:10px 18px; border-radius:10px; cursor:pointer;
+    white-space:nowrap; transition:.15s;
+  }
+  .tab.active{background:var(--chalkboard); color:var(--chalk);}
+  .tab:not(.active):hover{background:var(--marker-light); color:var(--marker);}
+
+  .day-panel{display:none;}
+  .day-panel.active{display:block;}
+  .slot{
+    display:grid; grid-template-columns:120px 1fr 40px;
+    align-items:center; gap:14px;
+    background:var(--chalk); border:1px solid var(--rule);
+    border-radius:12px; padding:14px 16px; margin-bottom:10px;
+  }
+  @media(max-width:600px){.slot{grid-template-columns:1fr 40px; row-gap:4px;} .slot .time{grid-column:1/2;}}
+  .slot .time{font-family:'JetBrains Mono',monospace; font-size:13px; color:var(--marker); font-weight:700;}
+  .slot .task{font-size:14.5px; line-height:1.5;}
+  .slot.done .task{color:var(--ink-soft); text-decoration:line-through; text-decoration-color:var(--pen); text-decoration-thickness:2px;}
+
+  .check{
+    width:26px; height:26px; border-radius:8px;
+    border:2px solid var(--rule); background:transparent;
+    cursor:pointer; position:relative; flex-shrink:0;
+  }
+  .check svg{position:absolute; inset:0; width:100%; height:100%; overflow:visible;}
+  .check path{
+    fill:none; stroke:var(--pen); stroke-width:3.5; stroke-linecap:round; stroke-linejoin:round;
+    stroke-dasharray:40; stroke-dashoffset:40;
+  }
+  .check.checked{border-color:var(--pen); background:var(--pen-light);}
+  .check.checked path{animation:tick .35s ease forwards;}
+  @keyframes tick{to{stroke-dashoffset:0;}}
+
+  .note{
+    margin-top:28px; font-size:13.5px; color:var(--ink-soft);
+    border-left:3px solid var(--marker); padding:10px 16px; background:var(--marker-light); border-radius:0 10px 10px 0;
+  }
+
+  footer{
+    text-align:center; padding:40px 24px 60px; color:var(--ink-soft); font-size:13px;
+  }
+</style>
+</head>
+<body>
+
+<div class="hero">
+  <div class="hero-inner">
+    <div class="eyebrow"><span class="dot"></span>แผนอ่านหนังสือ 10 สัปดาห์</div>
+    <h1>เตรียมสอบครูผู้ช่วย<br>เอก<span>คณิตศาสตร์</span></h1>
+    <p class="sub">ตารางอ่านหนังสือแบบละเอียด ครบทั้ง ภาค ก · ภาค ข · ภาค ค คำนวณจากเวลาที่มี 2-3 เดือน อ่านได้วันละ 5-6 ชั่วโมง</p>
+    <div class="hero-stats">
+      <div class="stat-chip"><div class="num">500</div><div class="lbl">คะแนนเต็มทั้งหมด</div></div>
+      <div class="stat-chip circle-wrap">
+        <div class="num">120</div>
+        <svg viewBox="0 0 100 60"><path d="M8,32 C6,14 28,4 50,5 C76,6 94,16 92,32 C90,50 64,56 48,55 C24,54 10,48 8,32 Z"/></svg>
+        <div class="lbl">เกณฑ์ผ่าน (ก และ ข)</div>
+      </div>
+      <div class="stat-chip"><div class="num">10</div><div class="lbl">สัปดาห์ในแผน</div></div>
+      <div class="stat-chip"><div class="num">5-6</div><div class="lbl">ชม./วัน</div></div>
+    </div>
+  </div>
+</div>
+
+<section id="scores">
+  <div class="section-head">
+    <span class="tag">โครงสร้างคะแนนสอบ</span>
+    <h2>3 ภาค รวม 500 คะแนน</h2>
+    <p>ต้องผ่านภาค ก และภาค ข อย่างละ 120 คะแนนขึ้นไปก่อน จึงจะมีสิทธิ์เข้าสอบภาค ค</p>
+  </div>
+  <div class="score-grid">
+
+    <div class="score-card">
+      <div class="part">ภาค ก</div>
+      <div class="part-name">ความรู้ความสามารถทั่วไป · 200 คะแนน</div>
+      <ul>
+        <li><span>คิดวิเคราะห์ (ภาษา/นามธรรม/ปริมาณ)</span><span class="n">100 ข้อ</span></li>
+        <li><span>ทักษะภาษาอังกฤษ</span><span class="n">50 ข้อ</span></li>
+        <li><span>ความรู้-ลักษณะข้าราชการที่ดี</span><span class="n">50 ข้อ</span></li>
+      </ul>
+      <div class="pass-line">ผ่านตั้งแต่ <b>120</b> คะแนน</div>
+      <a class="card-link" href="./A1.html">ดูเพิ่มเติมตรงนี้นะเธอ</a>
+    </div>
+
+    <div class="score-card">
+      <div class="part">ภาค ข</div>
+      <div class="part-name">มาตรฐานความรู้และประสบการณ์วิชาชีพ · 200 คะแนน</div>
+      <ul>
+        <li><span>วิชาเอกคณิตศาสตร์</span><span class="n">100 ข้อ</span></li>
+        <li><span>มาตรฐานการสอน / จิตวิทยา / หลักสูตร</span><span class="n">75 ข้อ</span></li>
+        <li><span>กฏหมาย</span><span class="n">25 ข้อ</span></li>
+      </ul>
+      <div class="pass-line">ผ่านตั้งแต่ <b>120</b> คะแนน</div>
+      <a class="card-link" href="./B1.html">ดูเพิ่มเติมตรงนี้นะเธอ</a>
+    </div>
+
+    <div class="score-card">
+      <div class="part">ภาค ค</div>
+      <div class="part-name">ความเหมาะสมกับตำแหน่งวิชาชีพ · 100 คะแนน</div>
+      <ul>
+        <li><span>คุณลักษณะส่วนบุคคล</span><span class="n">25 คะแนน</span></li>
+        <li><span>การพัฒนาตนเอง/วิชาชีพ</span><span class="n">25 คะแนน</span></li>
+        <li><span>ความสามารถด้านการสอน</span><span class="n">50 คะแนน</span></li>
+      </ul>
+      <div class="pass-line">สอบเมื่อผ่าน <b>ก+ข</b></div>
+      <a class="card-note" href=".pass-line">ต้องผ่าน ก และ ข ก่อน เธอตั้งใจอ่านภาค ก และ ข ก่อนนะ อย่าพึ่งโฟกัสที่ภาค ค จะทำให้เธออ่านได้มีประสิทธิภาพเยอะขึ้น</a>
+    </div>
+
+  </div>
+</section>
+
+<section id="roadmap" style="background:var(--paper-2); border-radius:28px;">
+  <div class="section-head">
+    <span class="tag">แผนภาพรวม</span>
+    <h2>10 สัปดาห์ อ่านอะไรบ้าง</h2>
+    <p>เรียงลำดับให้ปูพื้นก่อน ตามด้วยวิชาที่มีน้ำหนักคะแนนเยอะ แล้วปิดท้ายด้วยการฝึกทำข้อสอบจริง</p>
+  </div>
+  <div class="roadmap" id="roadmapList"></div>
+</section>
+
+<section id="daily">
+  <div class="section-head">
+    <span class="tag">ตารางอ่านหนังสือรายวัน</span>
+    <h2>เลือกวันเพื่อดูตารางเวลา</h2>
+    <p>วันละ 5-6 ชั่วโมง แบ่งเป็น 4 ช่วง กดวงกลมด้านขวาเพื่อติ๊กเมื่ออ่านครบแล้ว</p>
+  </div>
+  <div class="tabbar" id="tabbar"></div>
+  <div id="dayPanels"></div>
+  <div class="note">เครื่องหมายถูกจะรีเซ็ตเมื่อโหลดหน้าใหม่ — ใช้สำหรับติดตามระหว่างวันอ่านหนังสือของคุณเท่านั้น</div>
+</section>
+
+<footer>ทำแผนตามความถนัดของตัวเองได้เสมอ ปรับสัดส่วนเวลาตามจุดที่ยังไม่แม่นในแต่ละภาค</footer>
+
+<script>
+const roadmap = [
+  {w:"1-2", title:"ปูพื้นฐานภาค ก", detail:"คิดวิเคราะห์เชิงภาษา / นามธรรม / ปริมาณ + เริ่มคำศัพท์ภาษาอังกฤษพื้นฐาน"},
+  {w:"3-4", title:"วิชาเอกคณิตศาสตร์ (เริ่ม)", detail:"ทบทวนเนื้อหาคณิตศาสตร์ระดับมัธยมที่ออกสอบบ่อย ปูพื้นเนื้อหาแต่ละบท"},
+  {w:"5", title:"วิชาเอกคณิต (เข้ม) + มาตรฐานการสอน", detail:"ฝึกโจทย์คณิตแบบข้อสอบจริง คู่กับจิตวิทยาพัฒนาการและหลักสูตร"},
+  {w:"6", title:"มาตรฐานการสอน (ต่อ)", detail:"การวัดและประเมินผล การวิจัยเพื่อพัฒนาผู้เรียน และการประกันคุณภาพการศึกษา"},
+  {w:"7", title:"กฏหมาย",detail:"กฏหมายที่เกี่ยวข้องกับการทำงาน"},
+  {w:"8", title:"ภาค ค", detail:"บุคลิกภาพ การพัฒนาตนเองและวิชาชีพ เทคนิคการออกแบบแผนการสอน"},
+  {w:"9", title:"ทบทวนรวม + ทำข้อสอบเก่า", detail:"ไล่เก็บจุดอ่อนทุกภาค ทำข้อสอบเก่าแบบจับเวลา"},
+  {w:"10", title:"ติวเข้ม + เตรียมสัมภาษณ์", detail:"จำลองสนามสอบจริง และซ้อมสัมภาษณ์สำหรับภาค ค"},
+];
+
+const roadmapList = document.getElementById('roadmapList');
+roadmap.forEach(r=>{
+  const row = document.createElement('div');
+  row.className='week-row';
+  row.innerHTML = `<div class="week-badge">${r.w}</div>
+    <div><div class="week-title">${r.title}</div><div class="week-detail">${r.detail}</div></div>`;
+  roadmapList.appendChild(row);
+});
+
+const days = [
+  {name:"จันทร์", slots:[
+    ["08:00-10:00","วิชาเอกคณิตศาสตร์: พีชคณิต"],
+    ["10:15-11:45","คิดวิเคราะห์เชิงภาษา"],
+    ["13:00-14:30","ภาษาอังกฤษ: คำศัพท์"],
+    ["19:00-20:00","กฎหมายการศึกษา"],
+  ]},
+  {name:"อังคาร", slots:[
+    ["08:00-10:00","มาตรฐานการสอน: จิตวิทยาพัฒนาการ"],
+    ["10:15-11:45","คิดวิเคราะห์เชิงนามธรรม"],
+    ["13:00-14:30","ภาษาอังกฤษ: แกรมมาร์"],
+    ["19:00-20:00","ระเบียบข้าราชการครู"],
+  ]},
+  {name:"พุธ", slots:[
+    ["08:00-10:00","วิชาเอกคณิตศาสตร์: เรขาคณิต"],
+    ["10:15-11:45","คิดวิเคราะห์เชิงปริมาณ"],
+    ["13:00-14:30","ภาษาอังกฤษ: Reading"],
+    ["19:00-20:00","คุณธรรมจริยธรรมครู"],
+  ]},
+  {name:"พฤหัสฯ", slots:[
+    ["08:00-10:00","มาตรฐานการสอน: หลักสูตรและเทคโนโลยีดิจิทัล"],
+    ["10:15-11:45","คิดวิเคราะห์เชิงภาษา"],
+    ["13:00-14:30","ภาษาอังกฤษ: คำศัพท์"],
+    ["19:00-20:00","บุคลิกภาพ / การพูด"],
+  ]},
+  {name:"ศุกร์", slots:[
+    ["08:00-10:00","วิชาเอกคณิตศาสตร์: สถิติ-ความน่าจะเป็น"],
+    ["10:15-11:45","คิดวิเคราะห์เชิงนามธรรม"],
+    ["13:00-14:30","ภาษาอังกฤษ: แกรมมาร์"],
+    ["19:00-20:00","เทคนิคการสอน / แผนการสอน"],
+  ]},
+  {name:"เสาร์", slots:[
+    ["08:00-10:00","ทำโจทย์คณิตศาสตร์ข้อสอบเก่า"],
+    ["10:15-11:45","ทำข้อสอบภาค ก ชุดเก่า"],
+    ["13:00-14:30","ทบทวนจุดที่ยังผิดบ่อย"],
+  ]},
+  {name:"อาทิตย์", slots:[
+    ["09:00-10:30","พักผ่อน / ทบทวนเบาๆ"],
+    ["16:00-17:30","สรุปสิ่งที่เรียนมาทั้งสัปดาห์"],
+  ]},
+];
+
+const tabbar = document.getElementById('tabbar');
+const dayPanels = document.getElementById('dayPanels');
+
+days.forEach((d,i)=>{
+  const tab = document.createElement('button');
+  tab.className = 'tab' + (i===0?' active':'');
+  tab.textContent = d.name;
+  tab.onclick = ()=>{
+    document.querySelectorAll('.tab').forEach(t=>t.classList.remove('active'));
+    document.querySelectorAll('.day-panel').forEach(p=>p.classList.remove('active'));
+    tab.classList.add('active');
+    document.getElementById('panel-'+i).classList.add('active');
+  };
+  tabbar.appendChild(tab);
+
+  const panel = document.createElement('div');
+  panel.className = 'day-panel' + (i===0?' active':'');
+  panel.id = 'panel-'+i;
+  d.slots.forEach((s,j)=>{
+    const slot = document.createElement('div');
+    slot.className='slot';
+    slot.innerHTML = `<div class="time">${s[0]}</div><div class="task">${s[1]}</div>
+      <button class="check" aria-label="ทำเครื่องหมายว่าอ่านแล้ว">
+        <svg viewBox="0 0 24 24"><path d="M4 12.5 L10 18 L20 6"/></svg>
+      </button>`;
+    const btn = slot.querySelector('.check');
+    btn.onclick = ()=>{
+      btn.classList.toggle('checked');
+      slot.classList.toggle('done');
+    };
+    panel.appendChild(slot);
+  });
+  dayPanels.appendChild(panel);
+});
+</script>
+
+</body>
+</html>
