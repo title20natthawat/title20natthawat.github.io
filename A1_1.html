@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>การคิดวิเคราะห์เชิงภาษา · ภาค ก</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Kanit:wght@500;600;700;800&family=Sarabun:wght@400;500;600;700&family=JetBrains+Mono:wght@500;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --chalkboard:#16302B;
+    --chalkboard-2:#1C3D36;
+    --chalk:#F4F1E6;
+    --paper:#FBF8F1;
+    --paper-2:#F1ECDF;
+    --ink:#232720;
+    --ink-soft:#5B6259;
+    --marker:#2456A6;
+    --marker-light:#DCE7F8;
+    --pen:#B23A32;
+    --pen-light:#F4DEDB;
+    --rule:#D8D2C1;
+  }
+  *{box-sizing:border-box;}
+  body{
+    margin:0; background:var(--paper); color:var(--ink);
+    font-family:'Sarabun',sans-serif; -webkit-font-smoothing:antialiased;
+  }
+  h1,h3,h4{font-family:'Kanit',sans-serif; margin:0;}
+
+  .topbar{
+    position:relative;
+    background:linear-gradient(180deg, var(--chalkboard) 0%, var(--chalkboard-2) 100%);
+    color:var(--chalk); padding:44px 24px 36px; border-bottom:10px solid var(--paper-2);
+    overflow:hidden;
+  }
+  .topbar::before{
+    content:""; position:absolute; inset:0;
+    background-image:
+      repeating-linear-gradient(0deg, rgba(255,255,255,0.025) 0px, rgba(255,255,255,0.025) 1px, transparent 1px, transparent 42px),
+      repeating-linear-gradient(90deg, rgba(255,255,255,0.025) 0px, rgba(255,255,255,0.025) 1px, transparent 1px, transparent 42px);
+    pointer-events:none;
+  }
+  .topbar-inner{position:relative; max-width:720px; margin:0 auto;}
+  .back{
+    display:inline-flex; align-items:center; gap:6px;
+    font-family:'JetBrains Mono',monospace; font-size:13px; color:#B7D1F5;
+    text-decoration:none; border:1px solid rgba(183,209,245,.35);
+    border-radius:999px; padding:6px 14px; margin-bottom:18px;
+  }
+  .back:hover{background:rgba(255,255,255,.08);}
+  .topbar .eyebrow{font-family:'JetBrains Mono',monospace; font-size:12.5px; letter-spacing:.08em; color:#8FC1F5; text-transform:uppercase; display:block; margin-bottom:8px;}
+  .topbar h1{font-size:clamp(24px,4.5vw,34px); font-weight:800;}
+
+  main{max-width:720px; margin:0 auto; padding:48px 24px 80px;}
+
+  .quote-box{
+    position:relative;
+    background:var(--pen-light); border:1px solid #E3B9B4; border-radius:14px;
+    padding:20px 22px; margin-bottom:36px;
+    font-family:'Kanit',sans-serif; font-weight:600; font-size:16px; color:var(--pen);
+    line-height:1.6;
+  }
+  .quote-box::before{content:"✎"; margin-right:8px;}
+
+  .section-label{
+    font-family:'JetBrains Mono',monospace; font-size:12.5px; letter-spacing:.08em;
+    color:var(--marker); text-transform:uppercase; margin-bottom:14px; display:block;
+  }
+
+  .video-list{display:flex; flex-direction:column; gap:12px;}
+  a.video-card{
+    display:flex; align-items:center; gap:16px;
+    background:var(--chalk); border:1px solid var(--rule); border-radius:14px;
+    padding:16px 18px; text-decoration:none; color:var(--ink);
+    transition:.15s;
+  }
+  a.video-card:hover{border-color:var(--pen); background:var(--pen-light); transform:translateX(3px);}
+  a.video-card .ep{
+    flex-shrink:0; width:40px; height:40px; border-radius:10px;
+    background:var(--chalkboard); color:var(--chalk);
+    display:flex; align-items:center; justify-content:center;
+    font-family:'JetBrains Mono',monospace; font-weight:700; font-size:13px;
+  }
+  a.video-card .title{font-family:'Kanit',sans-serif; font-weight:600; font-size:15px; flex:1;}
+  a.video-card .play{
+    flex-shrink:0; width:26px; height:26px; border-radius:50%;
+    background:var(--pen); display:flex; align-items:center; justify-content:center;
+  }
+  a.video-card .play svg{width:11px; height:11px; fill:var(--chalk);}
+
+  footer{text-align:center; padding:0 24px 60px; color:var(--ink-soft); font-size:13px;}
+</style>
+</head>
+<body>
+
+<div class="topbar">
+  <div class="topbar-inner">
+    <a class="back" href="../A1.html">← กลับภาค ก</a>
+    <span class="eyebrow">ความสามารถในการคิดวิเคราะห์</span>
+    <h1>การคิดวิเคราะห์เชิงภาษา</h1>
+  </div>
+</div>
+
+<main>
+  <div class="quote-box">ที่สำคัญคือต้องฝึกทำข้อสอบเยอะๆ สู้ๆ นะค้าบแฟน</div>
+
+  <span class="section-label">วิดีโอสอน</span>
+  <div class="video-list">
+    <a class="video-card" href="https://www.youtube.com/watch?v=RFEctYVpOHY" target="_blank" rel="noopener">
+      <div class="ep">EP1</div>
+      <div class="title">วิดีโอสอน ep1</div>
+      <div class="play"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></div>
+    </a>
+    <a class="video-card" href="https://www.youtube.com/watch?v=9a4TiTgvyw4" target="_blank" rel="noopener">
+      <div class="ep">EP2</div>
+      <div class="title">วิดีโอสอน ep2</div>
+      <div class="play"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></div>
+    </a>
+    <a class="video-card" href="https://www.youtube.com/watch?v=l-AH2cxKNbE" target="_blank" rel="noopener">
+      <div class="ep">EP3</div>
+      <div class="title">วิดีโอสอน ep3</div>
+      <div class="play"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></div>
+    </a>
+  </div>
+</main>
+
+<footer>ดูครบ ทุก EP แล้วอย่าลืมกลับไปฝึกทำโจทย์เพิ่มด้วยนะ</footer>
+
+</body>
+</html>
